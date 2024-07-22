@@ -33,8 +33,6 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
                 session = worksheet_hours.cell(row=registration_cell.row, column=4).value
                 time_convert = worksheet_hours.cell(row=registration_cell.row, column=7).value
                 decimal_minutes = ((time_convert * 60) / 100)
-                print(decimal_minutes)
-                print(count)
                 worksheet_base.cell(row=count+5,column=1).value = registration
                 worksheet_base.cell(row=count+5,column=2).value = name
                 worksheet_base.cell(row=count+5,column=3).value = session
