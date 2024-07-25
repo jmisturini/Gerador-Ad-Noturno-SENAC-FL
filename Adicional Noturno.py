@@ -10,7 +10,6 @@ filepath = os.getenv('USERPROFILE')
 workbook_hours = load_workbook(filepath + "\\Desktop\\" + "Gerador\\Adicional Noturno Professores.xlsx", data_only=True)
 
 workbook_base = load_workbook(filepath + "\\Desktop\\" + "Gerador\\Planilha_Base_AN.xlsx")
-
 worksheet_base = workbook_base ["Adicional Noturno"]
 
 sheets = workbook_hours.sheetnames
@@ -21,7 +20,6 @@ else:
     print ("A pasta já existe")
 
 count = 0
-
 
 for worksheet_hours in workbook_hours.worksheets[0:1]:
     os.system('cls')
@@ -40,6 +38,7 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
                     worksheet_base.cell(row=count+5,column=3).value = session
                     worksheet_base.cell(row=count+5,column=7).value = decimal_minutes
                     worksheet_base.cell(row=count+5,column=11).value = unity_cell.value
+                    workbook_base.save(filepath + "\\Desktop\\" + "Gerador\\Gerados\\Tabela Adicional Noturno Professores" + "(" + str_current_datetime + ")" + ".xlsx")
                     count += 1
-                    workbook_base.save(filepath + "\\Desktop\\" + "Gerador\\Gerados\\Tabela Adicional Noturno Professores (Unidade " + str(unity_cell.value) + ")" + "(" + str_current_datetime + ")" + ".xlsx")
+                    workbook_base.close
 #input("\nPressione qualquer tecla para encerrar a aplicação...")
