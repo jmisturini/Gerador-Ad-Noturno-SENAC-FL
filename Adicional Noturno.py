@@ -40,5 +40,4 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
                     worksheet_base.cell(row=count+5,column=11).value = unity_cell.value
                     workbook_base.save(filepath + "\\Desktop\\" + "Gerador\\Gerados\\Tabela Adicional Noturno Professores" + "(" + str_current_datetime + ")" + ".xlsx")
                     count += 1
-                    workbook_base.close
 #input("\nPressione qualquer tecla para encerrar a aplicação...")
