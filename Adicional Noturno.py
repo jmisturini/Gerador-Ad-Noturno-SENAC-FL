@@ -19,7 +19,9 @@ if not os.path.exists(filepath + "\\Desktop\\" + "Gerador\\Gerados"):
 else:
     print ("A pasta já existe")
 
-count = 0
+count=0
+list_addition=[]
+unity_value=2
 
 for worksheet_hours in workbook_hours.worksheets[0:1]:
     os.system('cls')
@@ -33,11 +35,15 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
                     session = worksheet_hours.cell(row=registration_cell.row, column=4).value
                     time_convert = worksheet_hours.cell(row=registration_cell.row, column=7).value
                     decimal_minutes = ((time_convert * 60) / 100)
-                    worksheet_base.cell(row=count+5,column=1).value = registration
-                    worksheet_base.cell(row=count+5,column=2).value = name
-                    worksheet_base.cell(row=count+5,column=3).value = session
-                    worksheet_base.cell(row=count+5,column=7).value = decimal_minutes
-                    worksheet_base.cell(row=count+5,column=11).value = unity_cell.value
-                    workbook_base.save(filepath + "\\Desktop\\" + "Gerador\\Gerados\\Tabela Adicional Noturno Professores" + "(" + str_current_datetime + ")" + ".xlsx")
+                    unity = worksheet_hours.cell(row=registration_cell.row, column=9).value
+                    list_addition.append((registration, name, session, decimal_minutes, unity))
+                    list_addition.sort(key=lambda list_addition: list_addition[4])
+                    print (*list_addition, sep='\n')
+                    worksheet_base.cell(row=count+5,column=1).value = list_addition[0+count][0]
+                    worksheet_base.cell(row=count+5,column=2).value = list_addition[0+count][1]
+                    worksheet_base.cell(row=count+5,column=3).value = list_addition[0+count][2]
+                    worksheet_base.cell(row=count+5,column=7).value = list_addition[0+count][3]
+                    worksheet_base.cell(row=count+5,column=11).value = list_addition[0+count][4]
+                    workbook_base.save(filepath + "\\Desktop\\" + "Gerador\\Gerados\\Tabela Adicional Noturno Professores" + str(unity_value) + "(" + str_current_datetime + ")" + ".xlsx")
                     count += 1
 #input("\nPressione qualquer tecla para encerrar a aplicação...")
