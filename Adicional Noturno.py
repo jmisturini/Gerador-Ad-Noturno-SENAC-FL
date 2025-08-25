@@ -5,17 +5,19 @@ from datetime import datetime
 current_datetime = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
 str_current_datetime = str(current_datetime)
 
-filepath = os.getenv('USERPROFILE')
+filepath = os.getcwd()
 
-workbook_hours = load_workbook(filepath + "\\Desktop\\" + "Gerador Adicional Noturno\\Adicional Noturno Professores.xlsx", data_only=True)
+#filepath = os.getenv('USERPROFILE')
 
-workbook_base = load_workbook(filepath + "\\Desktop\\" + "Gerador Adicional Noturno\\Planilha_Base_AN.xlsx")
+workbook_hours = load_workbook(filepath + "\\Adicional Noturno Professores.xlsx", data_only=True)
+
+workbook_base = load_workbook(filepath + "\\Planilha_Base_AN.xlsx")
 worksheet_base = workbook_base ["Adicional Noturno"]
 
 sheets = workbook_hours.sheetnames
 
-if not os.path.exists(filepath + "\\Desktop\\" + "Gerador Adicional Noturno\\Gerados"):
-    os.mkdir(filepath + "\\Desktop\\" + "Gerador Adicional Noturno\\Gerados")
+if not os.path.exists(filepath + "\\Gerados"):
+    os.mkdir(filepath + "\\Gerados")
 else:
     print ("A pasta já existe")
 
@@ -44,6 +46,6 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
                     worksheet_base.cell(row=count+5,column=3).value = list_addition[0+count][2]
                     worksheet_base.cell(row=count+5,column=7).value = list_addition[0+count][3]
                     worksheet_base.cell(row=count+5,column=11).value = list_addition[0+count][4]
-                    workbook_base.save(filepath + "\\Desktop\\" + "Gerador Adicional Noturno\\Gerados\\Tabela Adicional Noturno Professores" + str(unity_value) + "(" + str_current_datetime + ")" + ".xlsx")
+                    workbook_base.save(filepath + "\\Gerados\\Tabela Adicional Noturno Professores" + str(unity_value) + "(" + str_current_datetime + ")" + ".xlsx")
                     count += 1
 input("\nPressione qualquer tecla para encerrar a aplicação...")
