@@ -31,7 +31,7 @@ for worksheet_hours in workbook_hours.worksheets[0:1]:
     print ("\nProcessando Informações da planilha", worksheet_hours.title,"\n")    
     for registration_cell, add_cell, add_min_cell, unity_cell in zip (worksheet_hours['A:A'],worksheet_hours['C:C'],worksheet_hours["E:E"], worksheet_hours["I:I"]): 
         if registration_cell.value is not None:
-            if add_cell.value == "Sim":
+            if add_cell.value == "Sim" or "SIM" or "sim":
                 if add_min_cell.value !=0 and add_min_cell.value is not None:
                     registration = worksheet_hours.cell(row=registration_cell.row, column=1).value
                     name = worksheet_hours.cell(row=registration_cell.row, column=2).value
